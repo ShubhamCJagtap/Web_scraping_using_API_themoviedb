@@ -44,6 +44,12 @@ def get_data(data,API,genres_dict):
             id_ = i['id']
             response_1 = requests.get("https://api.themoviedb.org/3/movie/"+str(id_)+"/credits?api_key="+str(API)+"&with_origin_country=IN")
             data_1 = response_1.json()
+            response_2 = requests.get("https://api.themoviedb.org/3/movie/"+str(id_)+"/keywords?&api_key="+str(API))
+            data_2 = response_2.json()
+            keywords = []
+            for n in data_2['keywords']:
+                keywords.append(n['name'])
+            #print(keywords)
             cast = []
             for k in data_1['cast']:
                 cast.append(k['name'])
